@@ -1,0 +1,130 @@
+; -----------------------------------------------------------------------------
+;                             Introduction
+; -----------------------------------------------------------------------------
+; Well, this is it! An example Profiler .info, showing you how to create your
+; own Install profiles easily. This file uses Drupal's info format, which is 
+; very similar to PHP's own ini format, however you can use nested arrays in 
+; Drupal's version, which comes in handy for lots of stuff, as you'll see below.
+;
+; "Wait, you said this would be easy, what is all this stuff?"
+;
+; There aren't really any mandatory things here, but if you don't put anything 
+; in here, your install profile won't do much. :) Don't get overwhelmed, just
+; go slow and make a few changes here and there till you get the hang of
+; what's happening.
+;
+; I've tried to create examples for every piece of functionality below, but to 
+; get a quick breakdown of what's currently available, here's a list of all the 
+; possible items:
+;
+; - base
+; - dependencies
+; - nodes
+; - terms
+; - theme
+; - users
+; - variables
+; -----------------------------------------------------------------------------
+
+name = AegirDemo Profile
+description = An example Install profile that uses Profiler.
+core = 7.x
+theme = bartik
+
+; -----------------------------------------------------------------------------
+; You could specify this as a sub install profile of another Profiler install
+; profile. Then, any configuration in profiler_example_base would be merged
+; with the stuff that's in this profile. Kind of the way that sub themes work,
+; if you're familiar with that.
+; -----------------------------------------------------------------------------
+; base = profiler_example_base
+
+
+; -----------------------------------------------------------------------------
+;                                  Modules
+; -----------------------------------------------------------------------------
+; List the modules (core, contrib and/or features) to be enabled in the
+; dependencies[] array. Any dependencies of the listed modules will be detected
+; and enabled automatically.
+; -----------------------------------------------------------------------------
+; Core
+dependencies[] = block
+dependencies[] = comment
+dependencies[] = contact
+dependencies[] = contextual
+dependencies[] = dashboard
+dependencies[] = field
+dependencies[] = image
+dependencies[] = list
+dependencies[] = menu
+dependencies[] = number
+dependencies[] = options
+dependencies[] = rdf
+dependencies[] = search
+dependencies[] = system
+dependencies[] = taxonomy
+dependencies[] = text
+dependencies[] = toolbar
+dependencies[] = trigger
+dependencies[] = updates
+dependencies[] = user
+
+; Contrib
+dependencies[] = admin
+dependencies[] = ctools
+dependencies[] = features
+dependencies[] = token
+dependencies[] = pathauto
+dependencies[] = views
+dependencies[] = views_ui
+dependencies[] = piwik
+
+; Custom
+
+
+; -----------------------------------------------------------------------------
+;                                   Users
+; -----------------------------------------------------------------------------
+; One other thing to note here is that there's this (handy) quirk in Drupal's 
+; install API in that you can bypass the configuration form during installation
+; (where you'd normally set up user 1 credentials and the site name and such).
+; To do this you need to specify credentials for user 1 and also specify the
+; site name and site email variables (@see Variables below). 
+; -----------------------------------------------------------------------------
+
+users[admin][uid]    = 1
+users[admin][name]   = admin
+users[admin][mail]   = aegirdemo@mig5.net
+users[admin][roles]  = Admin,Publisher
+users[admin][status] = 1
+
+users[siteadmin][uid]    = 2
+users[siteadmin][name]   = siteadmin
+users[siteadmin][mail]   = changeme@changeme
+users[siteadmin][roles]  = Admin,Publisher
+users[siteadmin][status] = 1
+
+; -----------------------------------------------------------------------------
+;                                  Variables
+; -----------------------------------------------------------------------------
+; These variables should be pretty self explanatory, as they are just an array
+; of key value pairs for items in the variable table. Nested arrays also can 
+; crop up here, since variables can be arrays.
+;
+; Also, make note of the site_name and site_mail variables below. These 
+; variables need to be set if you want to bypass the Configuration form during 
+; installation (@see Users for more information on how this is accomplished).
+; -----------------------------------------------------------------------------
+variables[site_name] = AegirDemo
+variables[site_mail] = aegirdemo@mig5.net
+
+variables[site_footer] = AegirDemo
+variables[site_frontpage] = node/1
+
+; -----------------------------------------------------------------------------
+;                                    Nodes
+; -----------------------------------------------------------------------------
+nodes[front][type] = page
+nodes[front][title] = Isn't Profiler nifty?
+nodes[front][uid] = 2
+nodes[front][body] = <p>Donec vel ipsum elit. In rutrum, ante at fringilla pharetra, mi justo fermentum risus; eget commodo est mi lobortis augue. Proin fringilla malesuada semper. Ut velit sapien, condimentum vel faucibus ut, aliquam quis dui? Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus vulputate fringilla enim, non convallis nibh lacinia at. Etiam fermentum, lectus ac sagittis volutpat, est augue tincidunt mi, et consectetur orci nisi sit amet sapien. Ut nisi nunc, molestie quis sollicitudin at, dignissim eget nisl? Sed vitae sem lectus. Curabitur viverra laoreet magna. Sed eget sapien tellus, eu tempor purus. Proin dignissim, lacus vitae venenatis porttitor, justo libero rhoncus felis, nec dictum nisl mi vitae nisi. Maecenas tincidunt eros at turpis sollicitudin nec viverra enim condimentum. Sed nec enim justo. In tristique risus dui; ac egestas mi. Proin at arcu sed enim eleifend ornare eu at arcu. Curabitur ullamcorper, ipsum eu imperdiet pharetra, mauris lorem hendrerit metus, in consectetur mauris est iaculis eros. Quisque euismod hendrerit metus ullamcorper tempus! Cras gravida ornare arcu vitae commodo. In hac habitasse platea turpis duis.</p>
