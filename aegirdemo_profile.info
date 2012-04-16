@@ -66,7 +66,6 @@ dependencies[] = taxonomy
 dependencies[] = text
 dependencies[] = toolbar
 dependencies[] = trigger
-dependencies[] = updates
 dependencies[] = user
 
 ; Contrib
